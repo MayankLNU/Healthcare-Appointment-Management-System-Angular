@@ -1,30 +1,48 @@
 import { Component, inject } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AccountService } from '../_services/account.service';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { TitleCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-nav',
-  imports: [FormsModule],
+  imports: [ReactiveFormsModule, BsDropdownModule, RouterLink, RouterLinkActive, TitleCasePipe],
   templateUrl: './nav.component.html',
-  styleUrl: './nav.component.css',
-  providers:[AccountService]
+  styleUrls: ['./nav.component.css']
 })
 export class NavComponent {
-  //private accountService = inject(AccountService)
-  constructor(private accountService:AccountService)
-  {
-    
+  accountService = inject(AccountService);
+  private router = inject(Router);
+  private fb = inject(FormBuilder);
+  loginForm: FormGroup = new FormGroup({});
+  gmailPattern = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+
+  ngOnInit(): void {
+    this.initializeForm();
   }
-  loggedIn = false;
-  model : any = {};
+
+  initializeForm() {
+    this.loginForm = this.fb.group({
+      Email: ['', [ Validators.required, Validators.pattern(this.gmailPattern)]],
+      Password: ['', Validators.required]
+    });
+  }
 
   login() {
-    this.accountService.login(this.model).subscribe({
-      next: response => {
+    this.accountService.login(this.loginForm.value).subscribe({
+      next: (response) => {
         console.log(response);
-        this.loggedIn = true;
-      },
-      error: error => console.log(error)
-    })
+      }
+    });
+  }
+
+  logout() {
+    this.accountService.logout();
+    this.router.navigateByUrl('/');
+  }
+
+  get currentUser() {
+    return this.accountService.currentUser();
   }
 }

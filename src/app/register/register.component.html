@@ -1,0 +1,77 @@
+<form [formGroup]="registerForm" (ngSubmit)="register()" autocomplete="off">
+    <h2 class="text-center text-primary">Sign Up</h2>
+    <hr>
+    @if (validationErrors.length > 0){
+        <div class="row mt-5">
+            @for (error of validationErrors; track $index){
+                <li type=".">{{error}}</li>
+            }
+        </div>
+    }
+
+    <div class="mb-3">
+        <label style="margin-right: 30px;">Role</label>
+        <label style="margin-right: 30px;" class="form-check-label">
+            <input type="radio" class="form-check-input" value="Doctor" formControlName="Role"> Doctor
+        </label>
+        <label class="form-check-label">
+            <input type="radio" class="form-check-input" value="Patient" formControlName="Role"> Patient
+        </label>
+        <div class="invalid-feedback text-start">Please select role</div>
+    </div>
+    
+    <div class="mb-3 form-floating">
+        <input
+            [class.is-invalid]="registerForm.get('Name')?.errors 
+            && registerForm.get('Name')?.touched"
+            type="text"
+            class="form-control"
+            formControlName="Name"
+            placeholder="Name"
+        >
+        <label>Name</label>
+        <div class="invalid-feedback text-start">Please enter name</div>
+    </div>
+    <div class="mb-3 form-floating">
+        <input
+            [class.is-invalid]="registerForm.get('Email')?.errors 
+            && registerForm.get('Email')?.touched"
+            type="text"
+            class="form-control"
+            formControlName="Email"
+            placeholder="Email"
+        >
+        <label>Email</label>
+        <div *ngIf="registerForm.get('Email')?.hasError('required')" 
+        class="invalid-feedback text-start">Please enter email</div>
+        <div *ngIf="registerForm.get('Email')?.hasError('pattern')" 
+        class="invalid-feedback text-start">Please enter a valid email</div>
+    </div>
+
+    <div class="mb-3 form-floating">
+        <input
+            [class.is-invalid]="registerForm.get('PhoneNumber')?.errors 
+            && registerForm.get('PhoneNumber')?.touched"
+            type="text"
+            class="form-control"
+            formControlName="PhoneNumber"
+            placeholder="Phone Number"
+        >
+        <label>Phone Number</label>
+        <div class="invalid-feedback text-start">Please enter phone number</div>
+    </div>
+    <div class="mb-3 form-floating">
+        <input
+            [class.is-invalid]="registerForm.get('Password')?.errors 
+            && registerForm.get('Password')?.touched"
+            type="password"
+            class="form-control"
+            formControlName="Password"
+            placeholder="Password"
+        >
+        <label>Password</label>
+        <div class="invalid-feedback text-start">Please enter password</div>
+    </div>
+    <button class="btn btn-success me-2" type="submit">Register</button>
+    <button class="btn btn-default me-2" (click)="cancel()" type="button">Cancel</button>
+</form>

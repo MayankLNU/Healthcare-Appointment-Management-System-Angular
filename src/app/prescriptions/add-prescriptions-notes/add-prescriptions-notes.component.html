@@ -1,0 +1,47 @@
+<form [formGroup]="prescriptionForm" (ngSubmit)="addPrescriptionsAndNotes()" autocomplete="off">
+    <h2 class="text-center text-primary">Add Prescriptions and Notes</h2>
+    <hr>
+    <div class="mb-3 form-floating">
+        <input
+            [class.is-invalid]="prescriptionForm.get('AppointmentId')?.errors 
+            && prescriptionForm.get('AppointmentId')?.touched"
+            type="number"
+            class="form-control"
+            formControlName="AppointmentId"
+            placeholder="Appointment Id"
+        >
+        <label>Appointment Id</label>
+        <div class="invalid-feedback text-start">Please enter Appointment Id</div>
+    </div>
+
+    <div class="mb-3 form-floating">
+        <input
+            [class.is-invalid]="prescriptionForm.get('Prescription')?.errors 
+            && prescriptionForm.get('Prescription')?.touched"
+            type="text"
+            class="form-control"
+            formControlName="Prescription"
+            placeholder="Prescriptions"
+        >
+        <label>Prescriptions</label>
+        <div class="invalid-feedback text-start">Please enter the prescriptions or NA</div>
+    </div>
+
+    <div class="mb-3 form-floating">
+        <input
+            [class.is-invalid]="prescriptionForm.get('Notes')?.errors 
+            && prescriptionForm.get('Notes')?.touched"
+            type="text"
+            class="form-control"
+            formControlName="Notes"
+            placeholder="Notes"
+        >
+        <label>Notes</label>
+        <div class="invalid-feedback text-start">Please enter the notes or NA</div>
+    </div>
+
+    <div class="d-flex justify-content-center">
+        <button class="btn btn-success me-2" type="submit">Submit</button>
+    </div>
+    
+  </form>   

@@ -1,30 +1,76 @@
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <div class="container">
-      <a class="navbar-brand" href="#">Healthcare Appointment Management</a>
-      <ul class="navbar-nav me-auto mb-2 mb-md-0">
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/">HealthPlus+</a>
+
+    <div class="d-flex me-auto">
+      @if (accountService.currentUser() && currentUser?.role == "Patient") {
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item">
-            <a class="nav-link active">Home</a>
+            <a routerLink="/available-timeslot" routerLinkActive="active" class="nav-link">Available Slots</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active">List</a>
+            <a routerLink="/book-appointment" routerLinkActive="active" class="nav-link">Book Appointment</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active">Messages</a>
+            <a routerLink="/update-appointment" routerLinkActive="active" class="nav-link">Update Appointment</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/cancel-appointment" routerLinkActive="active" class="nav-link">Cancel Appointment</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/get-prescriptions-notes" routerLinkActive="active" class="nav-link">Read Prescriptions</a>
           </li>
         </ul>
-        <form #loginForm="ngForm" (ngSubmit)="login()" class="d-flex" autocomplete="off">
+      }
+
+      @if (accountService.currentUser() && currentUser?.role == "Doctor"){
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item">
+            <a routerLink="/add-availability" routerLinkActive="active" class="nav-link">Add Availability</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/booked-appointment" routerLinkActive="active" class="nav-link">Booked Appointments</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/remove-timeslot" routerLinkActive="active" class="nav-link">Remove Slot</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/add-prescriptions-notes" routerLinkActive="active" class="nav-link">Add Prescriptions and Notes</a>
+          </li>
+        </ul>
+      }
+    </div>
+
+      @if (accountService.currentUser()) {
+        <div dropdown class="dropdown">
+          <a dropdownToggle class="dropdown-toggle text-light text-decoration-none">Welcome {{currentUser?.name | titlecase}}</a>
+          <div *dropdownMenu class="dropdown-menu">
+            <a class="dropdown-item">Edit Profile</a>
+            <div class="dropdown-devider"></div>
+            <a class="dropdown-item" (click)="logout()">Logout</a>
+          </div>
+        </div>
+      }
+
+      @if (!accountService.currentUser()) {
+        <form [formGroup]="loginForm" (ngSubmit)="login()" class="d-flex" autocomplete="off">
           <input 
-            name="username" 
-            [(ngModel)]="model.username" 
-            class="form-control me-2" 
+            [class.is-invalid]="loginForm.get('Email')?.errors 
+            && loginForm.get('Email')?.touched"
+            name="Email"  
+            class="form-control me-2"
+            formControlName="Email"
             placeholder="Email/Username">
           <input 
+            [class.is-invalid]="loginForm.get('Password')?.errors 
+            && loginForm.get('Password')?.touched"
             name="password" 
-            [(ngModel)]="model.password" 
             class="form-control me-2" 
+            formControlName="Password"
             placeholder="Password" type="password">
-          <button class="btn btn-outline-success" type="submit">Login</button>
+          <button class="btn btn-success" type="submit">Login</button>
         </form>
+      }
       </div>
    
   </nav>

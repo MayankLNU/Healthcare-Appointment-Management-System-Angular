@@ -1,1 +1,10 @@
-/* You can add global styles to this file, and also import other style files */
+.app-background {
+    background-color: #f0f0f0; /* Change this to your desired background color */
+    background-image: url('../images/app-background-2.jpg');
+    background-size: cover; /* Adjust the background size */
+    background-repeat: no-repeat; /* Prevent the background from repeating */
+    background-position: center; /* Center the background image */
+    min-height: 100vh; /* Ensure the background covers the entire viewport height */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+}
