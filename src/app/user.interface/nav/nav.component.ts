@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AccountService } from '../_services/account.service';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { TitleCasePipe } from '@angular/common';
+import { AccountService } from '../../_services/account.service';
 
 @Component({
   selector: 'app-nav',
@@ -14,15 +14,10 @@ import { TitleCasePipe } from '@angular/common';
 export class NavComponent {
   accountService = inject(AccountService);
   private router = inject(Router);
-  private fb = inject(FormBuilder);
-  loginForm: FormGroup = new FormGroup({});
+  loginForm: FormGroup;
   gmailPattern = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
 
-  ngOnInit(): void {
-    this.initializeForm();
-  }
-
-  initializeForm() {
+  constructor(private fb: FormBuilder) {
     this.loginForm = this.fb.group({
       Email: ['', [ Validators.required, Validators.pattern(this.gmailPattern)]],
       Password: ['', Validators.required]

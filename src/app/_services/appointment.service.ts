@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { AccountService } from './account.service';
 import { Appointment } from '../_models/appointment';
 import { map } from 'rxjs';
+import { Message } from '../_models/message';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,27 @@ export class AppointmentService {
             return appointment;
           })
         );
+  }
+
+  updateAppointment(model: any) {
+    return this.http.put<Appointment>(this.baseUrl + 'Patient/Update-Appointment', model, this.getHttpOptions()).pipe(
+          map(appointment => {
+            if (appointment) {
+              localStorage.setItem('appointment', JSON.stringify(appointment));
+            }
+            return appointment;
+          })
+        );
+  }
+
+  cancelAppointment(model: any) {
+    return this.http.post<Message>(this.baseUrl + 'Patient/Cancel-Appointment', model, this.getHttpOptions()).pipe(
+      map(message => {
+        if (message) {
+          localStorage.setItem('message', JSON.stringify(message));
+        }
+      })
+    );
   }
 
   getHttpOptions() {

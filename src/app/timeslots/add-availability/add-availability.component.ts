@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
-import { AccountService } from '../_services/account.service';
-import { AvailabilityService } from '../_services/availability.service';
+import { AccountService } from '../../_services/account.service';
+import { AvailabilityService } from '../../_services/availability.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BsDatepickerConfig, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-import { Availability } from '../_models/availability';
+import { Availability } from '../../_models/availability';
 import { CommonModule } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 

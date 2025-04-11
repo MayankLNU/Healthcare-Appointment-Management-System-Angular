@@ -2,10 +2,10 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BsDatepickerConfig, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-import { AppointmentService } from '../_services/appointment.service';
+import { AppointmentService } from '../../_services/appointment.service';
 import { ToastrService } from 'ngx-toastr';
-import { AccountService } from '../_services/account.service';
-import { Appointment } from '../_models/appointment';
+import { AccountService } from '../../_services/account.service';
+import { Appointment } from '../../_models/appointment';
 
 @Component({
   selector: 'app-book-appointment',

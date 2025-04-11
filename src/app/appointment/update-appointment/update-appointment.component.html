@@ -1,0 +1,91 @@
+<form [formGroup]="updateAppointmentForm" (ngSubmit)="updateAppointment()" autocomplete="off">
+    <h2 class="text-center text-primary">Update Appointment</h2>
+    <hr>
+
+    <div class="mb-3 form-floating">
+        <input
+            [class.is-invalid]="updateAppointmentForm.get('AppointmentId')?.errors 
+            && updateAppointmentForm.get('AppointmentId')?.touched"
+            type="number"
+            class="form-control"
+            formControlName="AppointmentId"
+            placeholder="Appointment Id"
+        >
+        <label>Appointment Id</label>
+        <div class="invalid-feedback text-start">Please enter appointment id</div>
+    </div>
+
+    <div class="mb-3 form-floating">
+        <input
+            [class.is-invalid]="updateAppointmentForm.get('DoctorId')?.errors 
+            && updateAppointmentForm.get('DoctorId')?.touched"
+            type="number"
+            class="form-control"
+            formControlName="DoctorId"
+            placeholder="Doctor Id"
+        >
+        <label>Doctor Id</label>
+        <div class="invalid-feedback text-start">Please enter doctor id</div>
+    </div>
+
+    <div class="mb-3 form-floating">
+        <input
+            [class.is-invalid]="updateAppointmentForm.get('Date')?.errors 
+            && updateAppointmentForm.get('Date')?.touched"
+            type="text"
+            class="form-control"
+            bsDatepicker
+            [bsConfig]="bsConfig"
+            formControlName="Date"
+            id="Date"
+            placeholder="Select a date"
+        >
+        <label>Select Date</label>
+    </div>
+    <div class="invalid-feedback text-start">Please select date</div>
+
+    <div class="mb-3 form-floating">
+        <input
+            [class.is-invalid]="updateAppointmentForm.get('StartTime')?.errors 
+            && updateAppointmentForm.get('StartTime')?.touched"
+            type="time"
+            class="form-control"
+            formControlName="StartTime"
+            placeholder="Start Time"
+        >
+        <label>Start Time</label>
+        <div class="invalid-feedback text-start">Please enter start time</div>
+    </div>
+
+
+    <div class="d-flex justify-content-center">
+        <button class="btn btn-success me-2" type="submit">Submit</button>
+    </div>
+  </form>
+
+  @if (appointmentDetails){
+    <hr>
+    <h3 class="text-center text-primary">New Booking Details:</h3>
+    <div class="d-flex justify-content-center align-items-center" style="height: 100%;">
+        <table class="table table-hover text-center">
+            <thead>
+                <tr>
+                    <th>Appointment Id</th>
+                    <th>Date</th>
+                    <th>Start Time</th>
+                    <th>Doctor Name</th>
+                    <th>Message</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{appointmentDetails.appointmentId}}</td>
+                    <td>{{appointmentDetails.date}}</td>
+                    <td>{{formatTime(appointmentDetails.startTime)}}</td>
+                    <td>{{appointmentDetails.doctorName}}</td>
+                    <td>{{appointmentDetails.message}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>  
+}

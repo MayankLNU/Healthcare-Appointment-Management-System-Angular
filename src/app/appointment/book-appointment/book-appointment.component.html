@@ -1,6 +1,20 @@
 <form [formGroup]="bookAppointmentForm" (ngSubmit)="bookAppointment()" autocomplete="off">
     <h2 class="text-center text-primary">Book Appointment</h2>
     <hr>
+
+    <div class="mb-3 form-floating">
+        <input
+            [class.is-invalid]="bookAppointmentForm.get('DoctorId')?.errors 
+            && bookAppointmentForm.get('DoctorId')?.touched"
+            type="number"
+            class="form-control"
+            formControlName="DoctorId"
+            placeholder="Doctor Id"
+        >
+        <label>Doctor Id</label>
+        <div class="invalid-feedback text-start">Please enter doctor id</div>
+    </div>
+
     <div class="mb-3 form-floating">
         <input
             [class.is-invalid]="bookAppointmentForm.get('Date')?.errors 
@@ -15,7 +29,7 @@
         >
         <label>Select Date</label>
     </div>
-    <div *ngIf="bookAppointmentForm.get('Date')?.hasError('required')" class="invalid-feedback text-start">Please select date</div>
+    <div class="invalid-feedback text-start">Please select date</div>
 
     <div class="mb-3 form-floating">
         <input
@@ -28,19 +42,6 @@
         >
         <label>Start Time</label>
         <div class="invalid-feedback text-start">Please enter start time</div>
-    </div>
-
-    <div class="mb-3 form-floating">
-        <input
-            [class.is-invalid]="bookAppointmentForm.get('DoctorId')?.errors 
-            && bookAppointmentForm.get('DoctorId')?.touched"
-            type="number"
-            class="form-control"
-            formControlName="DoctorId"
-            placeholder="Doctor Id"
-        >
-        <label>Doctor Id</label>
-        <div class="invalid-feedback text-start">Please enter doctor id</div>
     </div>
 
     <div class="d-flex justify-content-center">

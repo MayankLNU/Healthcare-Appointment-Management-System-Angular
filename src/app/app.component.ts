@@ -1,8 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { NavComponent } from "./nav/nav.component";
 import { AccountService } from './_services/account.service';
 import { RouterOutlet } from '@angular/router';
-import { FooterComponent } from "./footer/footer.component";
+import { FooterComponent } from './user.interface/footer/footer.component';
+import { NavComponent } from './user.interface/nav/nav.component';
 
 @Component({
   selector: 'app-root',

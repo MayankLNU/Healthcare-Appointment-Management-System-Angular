@@ -1,17 +1,17 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { AddAvailabilityComponent } from './add-availability/add-availability.component';
+import { AddAvailabilityComponent } from './timeslots/add-availability/add-availability.component';
 import { BookedTimeslotListComponent } from './timeslots/booked-timeslot-list/booked-timeslot-list.component';
-import { RemoveTimeslotComponent } from './remove-timeslot/remove-timeslot.component';
+import { RemoveTimeslotComponent } from './timeslots/remove-timeslot/remove-timeslot.component';
 import { AddPrescriptionsNotesComponent } from './prescriptions/add-prescriptions-notes/add-prescriptions-notes.component';
 import { authGuard } from './_guards/auth.guard';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
 import { AvailableTimeslotListComponent } from './timeslots/available-timeslot-list/available-timeslot-list.component';
-import { BookAppointmentComponent } from './book-appointment/book-appointment.component';
-import { UpdateAppointmentComponent } from './update-appointment/update-appointment.component';
-import { CancelAppointmentComponent } from './cancel-appointment/cancel-appointment.component';
+import { BookAppointmentComponent } from './appointment/book-appointment/book-appointment.component';
+import { UpdateAppointmentComponent } from './appointment/update-appointment/update-appointment.component';
+import { CancelAppointmentComponent } from './appointment/cancel-appointment/cancel-appointment.component';
 import { GetPrescriptionsNotesComponent } from './prescriptions/get-prescriptions-notes/get-prescriptions-notes.component';
+import { HomeComponent } from './user.interface/home/home.component';
 
 export const routes: Routes = [
     {path: '', component: HomeComponent},
