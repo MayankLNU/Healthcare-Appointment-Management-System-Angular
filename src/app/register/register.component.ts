@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit{
 
   register() {
     this.accountService.register(this.registerForm.value).subscribe({
-      next: response => {
+      next: () => {
         this.toastr.success("Successfully Registered. Please Login!");
         this.cancel();
       },

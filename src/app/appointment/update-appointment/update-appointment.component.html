@@ -1,5 +1,5 @@
 <form [formGroup]="updateAppointmentForm" (ngSubmit)="updateAppointment()" autocomplete="off">
-    <h2 class="text-center text-primary">Update Appointment</h2>
+    <h2 class="text-center text-primary"><strong>Update Appointment</strong></h2>
     <hr>
 
     <div class="mb-3 form-floating">
@@ -62,30 +62,3 @@
         <button class="btn btn-success me-2" type="submit">Submit</button>
     </div>
   </form>
-
-  @if (appointmentDetails){
-    <hr>
-    <h3 class="text-center text-primary">New Booking Details:</h3>
-    <div class="d-flex justify-content-center align-items-center" style="height: 100%;">
-        <table class="table table-hover text-center">
-            <thead>
-                <tr>
-                    <th>Appointment Id</th>
-                    <th>Date</th>
-                    <th>Start Time</th>
-                    <th>Doctor Name</th>
-                    <th>Message</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>{{appointmentDetails.appointmentId}}</td>
-                    <td>{{appointmentDetails.date}}</td>
-                    <td>{{formatTime(appointmentDetails.startTime)}}</td>
-                    <td>{{appointmentDetails.doctorName}}</td>
-                    <td>{{appointmentDetails.message}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>  
-}

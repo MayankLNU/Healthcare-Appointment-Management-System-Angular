@@ -1,5 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { AccountService } from './_services/account.service';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FooterComponent } from './user.interface/footer/footer.component';
 import { NavComponent } from './user.interface/nav/nav.component';
@@ -10,20 +9,4 @@ import { NavComponent } from './user.interface/nav/nav.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent implements OnInit{
-  private accountService = inject(AccountService);
-
-  ngOnInit(): void {
-    this.setCurrentUser();
-  }
-
-  setCurrentUser() {
-    const userString = localStorage.getItem('user');
-    if (!userString) return;
-    const user = JSON.parse(userString);
-    this.accountService.currentUser.set(user);
-  }
-}
-
-
-
+export class AppComponent{ }

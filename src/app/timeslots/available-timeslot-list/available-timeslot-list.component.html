@@ -1,5 +1,5 @@
 <form [formGroup]="dateForm" (ngSubmit)="getBookedSlots()" autocomplete="off">
-    <h2 class="text-center text-primary">Available Slots</h2>
+    <h2 class="text-center text-primary"><strong>Available Slots</strong></h2>
     <hr>
     <div class="mb-3 form-floating">
         <input
@@ -19,34 +19,25 @@
     <div class="d-flex justify-content-center">
         <button class="btn btn-success me-2" type="submit">Submit</button>
     </div>
-  </form>
+</form>
 
-@if (submit){
+<div *ngIf="submit">
     <hr>
     <h3 class="text-center text-primary">Available Slots List:</h3>
-    <div class="d-flex justify-content-center align-items-center" style="height: 100%;">
-        <table class="table table-hover text-center">
-            <thead>
-                <tr>
-                    <th>Doctor Id</th>
-                    <th>Doctor Name</th>
-                    <th>Date</th>
-                    <th>Start Time</th>
-                    <th>End Time</th>
-                    <th>Message</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let availability of availabilityList">
-                    <td>{{availability.doctorId}}</td>
-                    <td>{{availability.doctorName}}</td>
-                    <td>{{availability.date}}</td>
-                    <td>{{formatTime(availability.startTime)}}</td>
-                    <td>{{formatTime(availability.endTime)}}</td>
-                    <td>{{availability.message}}</td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="card-deck">
+        <div *ngFor="let availability of availabilityList" class="card m-2">
+            <div *ngIf="availability.doctorId" class="card-body text-center">
+                <h5 class="card-title">Dr. {{availability.doctorName}}</h5>
+                <p class="card-text">
+                    Doctor Id: {{availability.doctorId}}<br>
+                    Start Time: {{formatTime(availability.startTime)}}<br>
+                    End Time: {{formatTime(availability.endTime)}}
+                </p>
+                <button class="btn btn-primary" (click)="bookSlot(availability)">Book Slot</button>
+            </div>
+            <div *ngIf="!availability.doctorId" class="text-center card-body">
+                <h5 class="card-title">No slots available for this date.</h5>
+            </div>
+        </div>
     </div>
-    
-}
+</div>

@@ -1,0 +1,10 @@
+.signup-box {
+    background-color: #007bff; /* Change this to your desired color */
+    color: white;
+    border-radius: 10px; /* Adjust the value to make the corners more or less rounded */
+    height: 65px; /* Adjust the height as needed */
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

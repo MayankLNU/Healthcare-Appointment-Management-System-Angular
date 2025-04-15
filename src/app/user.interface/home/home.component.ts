@@ -1,10 +1,11 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RegisterComponent } from '../../register/register.component';
 import { AccountService } from '../../_services/account.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
-  imports: [RegisterComponent],
+  imports: [RegisterComponent, CommonModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

@@ -1,76 +1,77 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
   <div class="container">
-    <a class="navbar-brand" routerLink="/">HealthPlus+</a>
+    <div class="navbar-logo"></div>
+
+    <div class="navbar-brand-name">
+      <a class="navbar-brand" routerLink="/"><strong>HealthPlus+</strong></a>
+    </div>
 
     <div class="d-flex me-auto">
-      @if (accountService.currentUser() && currentUser?.role == "Patient") {
+      @if (currentUser?.role == "Patient") {
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item">
-            <a routerLink="/available-timeslot" routerLinkActive="active" class="nav-link">Available Slots</a>
+            <a routerLink="/available-timeslot" routerLinkActive="active" class="nav-link animated-link">Available Slots</a>
           </li>
           <li class="nav-item">
-            <a routerLink="/book-appointment" routerLinkActive="active" class="nav-link">Book Appointment</a>
+            <a routerLink="/book-appointment" routerLinkActive="active" class="nav-link animated-link">Book Appointment</a>
           </li>
           <li class="nav-item">
-            <a routerLink="/update-appointment" routerLinkActive="active" class="nav-link">Update Appointment</a>
+            <a routerLink="/update-appointment" routerLinkActive="active" class="nav-link animated-link">Update Appointment</a>
           </li>
           <li class="nav-item">
-            <a routerLink="/cancel-appointment" routerLinkActive="active" class="nav-link">Cancel Appointment</a>
+            <a routerLink="/cancel-appointment" routerLinkActive="active" class="nav-link animated-link">Cancel Appointment</a>
           </li>
           <li class="nav-item">
-            <a routerLink="/get-prescriptions-notes" routerLinkActive="active" class="nav-link">Read Prescriptions</a>
+            <a routerLink="/get-prescriptions-notes" routerLinkActive="active" class="nav-link animated-link">Read Prescriptions</a>
           </li>
         </ul>
       }
 
-      @if (accountService.currentUser() && currentUser?.role == "Doctor"){
+      @if (currentUser?.role == "Doctor"){
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item">
-            <a routerLink="/add-availability" routerLinkActive="active" class="nav-link">Add Availability</a>
+            <a routerLink="/add-availability" routerLinkActive="active" class="nav-link animated-link">Add Availability</a>
           </li>
           <li class="nav-item">
-            <a routerLink="/booked-appointment" routerLinkActive="active" class="nav-link">Booked Appointments</a>
+            <a routerLink="/booked-appointment" routerLinkActive="active" class="nav-link animated-link">Booked Appointments</a>
           </li>
           <li class="nav-item">
-            <a routerLink="/remove-timeslot" routerLinkActive="active" class="nav-link">Remove Slot</a>
+            <a routerLink="/remove-timeslot" routerLinkActive="active" class="nav-link animated-link">Remove Slot</a>
           </li>
           <li class="nav-item">
-            <a routerLink="/add-prescriptions-notes" routerLinkActive="active" class="nav-link">Add Prescriptions and Notes</a>
+            <a routerLink="/add-prescriptions-notes" routerLinkActive="active" class="nav-link animated-link">Add Prescriptions and Notes</a>
           </li>
         </ul>
       }
     </div>
 
-      @if (accountService.currentUser()) {
-        <div dropdown class="dropdown">
-          <a dropdownToggle class="dropdown-toggle text-light text-decoration-none">Welcome {{currentUser?.name | titlecase}}</a>
-          <div *dropdownMenu class="dropdown-menu">
-            <a class="dropdown-item">Edit Profile</a>
-            <div class="dropdown-devider"></div>
-            <a class="dropdown-item" (click)="logout()">Logout</a>
-          </div>
+    @if (accountService.currentUser()) {
+      <div dropdown class="dropdown">
+        <a dropdownToggle class="dropdown-toggle text-light text-decoration-none">Welcome {{currentUser?.name | titlecase}}</a>
+        <div *dropdownMenu class="dropdown-menu">
+          <a class="dropdown-item" (click)="logout()">Logout</a>
         </div>
-      }
-
-      @if (!accountService.currentUser()) {
-        <form [formGroup]="loginForm" (ngSubmit)="login()" class="d-flex" autocomplete="off">
-          <input 
-            [class.is-invalid]="loginForm.get('Email')?.errors 
-            && loginForm.get('Email')?.touched"
-            name="Email"  
-            class="form-control me-2"
-            formControlName="Email"
-            placeholder="Email/Username">
-          <input 
-            [class.is-invalid]="loginForm.get('Password')?.errors 
-            && loginForm.get('Password')?.touched"
-            name="password" 
-            class="form-control me-2" 
-            formControlName="Password"
-            placeholder="Password" type="password">
-          <button class="btn btn-success" type="submit">Login</button>
-        </form>
-      }
       </div>
-   
-  </nav>
+    }
+
+    @if (!accountService.currentUser()) {
+      <form [formGroup]="loginForm" (ngSubmit)="login()" class="d-flex" autocomplete="off">
+        <input 
+          [class.is-invalid]="loginForm.get('Email')?.errors 
+          && loginForm.get('Email')?.touched"
+          name="Email"  
+          class="form-control me-2"
+          formControlName="Email"
+          placeholder="Email/Username">
+        <input 
+          [class.is-invalid]="loginForm.get('Password')?.errors 
+          && loginForm.get('Password')?.touched"
+          name="password" 
+          class="form-control me-2" 
+          formControlName="Password"
+          placeholder="Password" type="password">
+        <button class="btn btn-success" type="submit">Login</button>
+      </form>
+    }
+  </div>
+</nav>

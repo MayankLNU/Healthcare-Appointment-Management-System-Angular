@@ -1,5 +1,10 @@
-<h4>Internal Server Error</h4>
-@if (error) {
-    <h5 class="text-danger">Error: {{error.message}}</h5>
-    <p class="font-weight-bold">Note: Something went wrong in the server!</p>
-}
+<div class="text-center">
+    <h4 class="text-danger">Internal Server Error</h4>
+    @if (error) {
+        @if (error.message){
+            <h5 class="text-danger">Error: {{error.message}}</h5>
+        }
+        <p class="font-weight-bold">Something went wrong in the server!</p>
+        <p class="font-weight-bold">We are working on it. Please try again after some time.</p>
+    }
+</div>

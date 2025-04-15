@@ -1,0 +1,25 @@
+.card-deck {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card-deck .card {
+    display: inline-block;
+    width: auto;
+    min-width: 18rem;
+    border-radius: 15px;
+    transition: transform 0.2s;
+}
+
+.card-deck .card:hover {
+    transform: scale(1.03);
+}
+
+.card-title {
+    color: #0026ce;
+}
+
+.card-text {
+    font-size: 1em;
+}

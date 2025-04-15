@@ -1,6 +1,6 @@
 .app-background {
     background-color: #f0f0f0; /* Change this to your desired background color */
-    background-image: url('../images/app-background-2.jpg');
+    background-image: url('../images/app-background.jpg');
     background-size: cover; /* Adjust the background size */
     background-repeat: no-repeat; /* Prevent the background from repeating */
     background-position: center; /* Center the background image */

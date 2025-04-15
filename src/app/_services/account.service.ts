@@ -12,7 +12,7 @@ export class AccountService {
   private http = inject(HttpClient);
   baseUrl = 'http://localhost:5288/api/';
   currentUser = signal<User | null> (null);
-
+  
   login(model: any){
     return this.http.post<User>(this.baseUrl + 'Account/Login', model).pipe(
       map(user => {
@@ -34,7 +34,6 @@ export class AccountService {
   }
   
   logout() {
-    localStorage.removeItem('user');
     this.currentUser.set(null);
   }
 }

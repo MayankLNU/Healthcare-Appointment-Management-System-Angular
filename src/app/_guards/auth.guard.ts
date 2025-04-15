@@ -11,7 +11,7 @@ export const authGuard: CanActivateFn = (route, state) => {
     return true;
   }
   else{
-    toastr.error('Please login first!');
+    toastr.error('Not Authorized!');
     return false;
   }
 };

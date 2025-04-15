@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AccountService } from '../../_services/account.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { BookingDetailsService } from '../../_services/booking-details.service';
 
 @Component({
   selector: 'app-cancel-appointment',
@@ -16,6 +17,7 @@ export class CancelAppointmentComponent {
   private appointmentService = inject(AppointmentService);
   private toastr = inject(ToastrService);
   private accountService = inject(AccountService);
+  private bookingDetailsService = inject(BookingDetailsService);
   appointmentIdForm: FormGroup;
 
   constructor(private fb: FormBuilder) {
@@ -33,6 +35,7 @@ export class CancelAppointmentComponent {
     this.appointmentService.cancelAppointment(model).subscribe({
       next: message => {
         this.toastr.success("Appointment cancelled successfully");
+        this.bookingDetailsService.setAppointmentDetails(null);
       }
     });
   }

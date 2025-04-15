@@ -1,13 +1,13 @@
 <form [formGroup]="registerForm" (ngSubmit)="register()" autocomplete="off">
-    <h2 class="text-center text-primary">Sign Up</h2>
-    <hr>
-    @if (validationErrors.length > 0){
-        <div class="row mt-5">
-            @for (error of validationErrors; track $index){
-                <li type=".">{{error}}</li>
-            }
-        </div>
-    }
+    <div class="signup-box d-flex justify-content-center align-items-center bg-primary text-white p-3">
+        <h2><strong>Sign Up</strong></h2>
+    </div>
+
+    <div *ngIf="validationErrors.length > 0" class="row mt-5">
+        @for (error of validationErrors; track $index){
+            <li type=".">{{error}}</li>
+        }
+    </div>
 
     <div class="mb-3">
         <label style="margin-right: 30px;">Role</label>

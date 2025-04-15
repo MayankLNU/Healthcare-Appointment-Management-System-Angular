@@ -6,6 +6,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { CommonModule, DatePipe } from '@angular/common';
 import { BsDatepickerConfig, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { Appointment } from '../../_models/appointment';
+import { BookingDetailsService } from '../../_services/booking-details.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-update-appointment',
@@ -18,7 +20,8 @@ export class UpdateAppointmentComponent {
   private appointmentService = inject(AppointmentService);
   private toastr = inject(ToastrService);
   private accountService = inject(AccountService);
-  appointmentDetails: Appointment | null = null;
+  private bookingDetailsService = inject(BookingDetailsService);
+  private router = inject(Router);
   updateAppointmentForm: FormGroup;
   bsConfig: Partial<BsDatepickerConfig>;
 
@@ -50,7 +53,9 @@ export class UpdateAppointmentComponent {
 
     this.appointmentService.updateAppointment(model).subscribe({
       next: response => {
-        this.appointmentDetails = response;
+        this.bookingDetailsService.setAppointmentDetails(response);
+        this.toastr.success("Booking Updated Successfully.\nPlease go to Book Appointment section for Booking Details.");
+        this.router.navigateByUrl('/book-appointment');
       }
     });
   }

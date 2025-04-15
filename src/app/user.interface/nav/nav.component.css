@@ -1,3 +1,24 @@
-.dropdown-toggle, .dropdown-item{
+.dropdown-toggle, .dropdown-item {
     cursor: pointer;
+}
+
+.navbar-logo {
+    background-image: url('../../../../images/logo.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left center;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.animated-link {
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 7px;
+}
+
+.animated-link:hover {
+    background-color: #003366;
+    color: #ffffff;
+    border-radius: 7px;
 }
